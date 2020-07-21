@@ -1,11 +1,12 @@
 package com.hazelcast.springboot.caching;
 
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import javax.cache.annotation.CacheResult;
 
 @Service
 public class BookService {
-    @Cacheable("books")
+    @CacheResult(cacheName = "books")
     public String getBookNameByIsbn(String isbn) {
         return findBookInSlowSource(isbn);
     }

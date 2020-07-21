@@ -1,5 +1,4 @@
 hazelcast:
-  network:
-    join:
-      multicast:
-        enabled: true
+  cache:
+    books:
+      management-enabled: true
