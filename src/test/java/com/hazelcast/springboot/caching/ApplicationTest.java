@@ -27,7 +27,7 @@ public class ApplicationTest {
         // given
         String isbn = "12345";
         String cachedValue = "cached-value";
-        hazelcastInstance.getMap("books").put(isbn, cachedValue);
+        hazelcastInstance.getCacheManager().getCache("books").put(isbn, cachedValue);
 
         // when
         String response = restTemplate.getForObject(String.format("http://localhost:%s/books/%s", port, isbn), String.class);
