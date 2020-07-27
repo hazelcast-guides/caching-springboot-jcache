@@ -1,5 +1,5 @@
 :github-address: https://github.com/hazelcast-guides/springboot-jcache
-:templates-url: https://raw.githubusercontent.com/hazelcast-guides/adoc-templates/master
+:templates-url: templates:ROOT:page$/
 :hazelcast: Hazelcast IMDG
 :framework: Spring Boot
 = Using Spring Boot with JCache and Hazelcast
