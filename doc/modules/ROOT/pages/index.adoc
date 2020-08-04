@@ -10,7 +10,7 @@ include::{templates-url}/link-to-repo.adoc[]
 
 == What You’ll Learn
 
-In this guide, you'll deploy a Spring Boot application which uses JCache with Hazelcast implementation.
+In this guide, you'll deploy a Spring Boot application that uses JCache with Hazelcast implementation.
 
 == Prerequisites
 
@@ -20,7 +20,7 @@ In this guide, you'll deploy a Spring Boot application which uses JCache with Ha
 
 == Spring Boot Application
 
-To use JCache in your Spring Boot application, you need to:
+To leverage JCache in your Spring Boot application, you will need to:
 
 - add `org.springframework.boot:spring-boot-starter-cache` dependency
 - add `@EnableCaching` annotation to your main class
@@ -29,7 +29,7 @@ To use JCache in your Spring Boot application, you need to:
 
 For more explanation on the Spring Boot and JCache topic, please check the related Spring Boot blog post: https://spring.io/blog/2014/04/14/cache-abstraction-jcache-jsr-107-annotations-support[Cache Abstraction: JCache].
 
-In our case, let's have a simple web service with two classes defined as follows.
+In our case, let's have a simple web service with two classes defined as follows:
 
 .BookController.java
 [source,java]
@@ -37,8 +37,12 @@ In our case, let's have a simple web service with two classes defined as follows
 @RestController
 @RequestMapping("/books")
 public class BookController {
-    @Autowired
-    private BookService bookService;
+
+    private final BookService bookService;
+
+    BookController(BookService bookService) {
+        this.bookService = bookService;
+    }
 
     @GetMapping("/{isbn}")
     public String getBookNameByIsbn(@PathVariable("isbn") String isbn) {
@@ -62,18 +66,21 @@ public class BookService {
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Thread.currentThread().interrupt();
+            throw new RuntimeException(e);
         }
         return "Sample Book Name";
     }
 }
 ----
 
-The idea here is that every call to the endpoint `/books/<isbn>` would go to the method `findBookNameByIsbn()` which in turn would first check the cache. Only if it does not find value in the cache, the method `findBookInSlowSource()` would be executed.
+The idea is that every call to the endpoint `/books/<isbn>` would go to the method `findBookNameByIsbn()`, which would attempt to return cached results.
+
+If there's no cached value, the method would be executed and results cached.
 
 == Using Hazelcast as JCache provider
 
-We want to use Hazelcast as the JCache provider. The good news is that all you have to do it to add Hazelcast to your classpath.
+We want to use Hazelcast as the JCache provider. The good news is that all you have to do it to add Hazelcast to your classpath:
 
 .pom.xml
 ----
@@ -84,13 +91,13 @@ We want to use Hazelcast as the JCache provider. The good news is that all you h
 </dependency>
 ----
 
-Then, you need to add Hazelcast configuration in one of the following manners:
+Then, you need to add Hazelcast configuration choosing one of the below options:
 
 - Add `hazelcast.yaml` configuration OR
 - Add `hazelcast.xml` configuration OR
 - Define `@Bean` with Hazelcast configuration in the source code
 
-Let’s use the first option and add the following file into `src/main/resources`.
+Let’s use the first option and add the following file into `src/main/resources`:
 
 .hazelcast.yaml
 [source,yaml]
@@ -101,7 +108,7 @@ hazelcast:
       management-enabled: true
 ----
 
-Finally, we need to specify the JCache provider in the `application.properties` file.
+Finally, we need to specify the JCache provider in the `application.properties` file:
 
 .application.properties
 [source,properties]
@@ -137,7 +144,7 @@ curl localhost:8080/books/12345
 Sample Book Name
 ----
 
-The first time you execute this command it should take some time to get the response. However, when you try it again, it should be instant. That means that the cache is used.
+The first time you execute this command, it should take some time to get the response. However, when you try it again, it should be instant. That means that the cache is used.
 
 ----
 curl localhost:8080/books/12345
@@ -146,6 +153,6 @@ Sample Book Name
 
 == What's more?
 
-Spring Boot is really well integrated with Hazelcast and vice-versa. If you want to use Hazelcast in the client-server topology, then it's enough to use `HazelcastClientCachingProvider` instead of `HazelcastServerCachingProvider` in your `application.properties`.
+If you want to use Hazelcast in the client-server topology, then it's enough to use `HazelcastClientCachingProvider` instead of `HazelcastServerCachingProvider` in your `application.properties`.
 
 If your want to learn more about Hazelcast as JCache provider, please check the official Hazelcast documentation: https://docs.hazelcast.org/docs/latest/manual/html-single/#hazelcast-jcache[Hazelcast JCache].
