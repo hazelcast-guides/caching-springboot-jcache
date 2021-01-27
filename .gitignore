@@ -10,3 +10,4 @@ target/
 *.ipr
 *.iws
 *.txt
+settings.json
