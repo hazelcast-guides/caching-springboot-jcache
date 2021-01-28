@@ -1,6 +1,8 @@
 package com.hazelcast.springboot.caching;
 
+import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,7 +13,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class ApplicationTest {
+public class ApplicationClientServerTest {
 
     @LocalServerPort
     private int port;
@@ -21,6 +23,11 @@ public class ApplicationTest {
 
     @Autowired
     private HazelcastInstance hazelcastInstance;
+
+    @BeforeAll
+    public static void setUp() {
+        Hazelcast.newHazelcastInstance();
+    }
 
     @Test
     public void useCachedValue() {
