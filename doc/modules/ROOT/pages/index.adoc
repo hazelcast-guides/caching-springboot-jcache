@@ -105,7 +105,7 @@ Finally, you can configure your application to use Hazelcast. You can use either
 
 === Client-server Configuration
 
-You first need to start Hazelcast server with the Hazelcast configuration defined in the previous step.
+You first need to start a Hazelcast server with the Hazelcast configuration defined in the previous step.
 
 [tabs]
 ====
