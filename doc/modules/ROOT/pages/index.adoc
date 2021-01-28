@@ -153,7 +153,7 @@ mvn spring-boot:run
 
 === Embedded Hazelcast Configuration
 
-If you prefer to run Hazelcast embedded in your Spring Boot application, then you need to use the following `application.properties` file.
+If you prefer to run Hazelcast embedded in your Spring Boot application, then you need to use the following `application-embedded.properties` file.
 
 .application-embedded.properties
 [source,properties]
