@@ -86,7 +86,7 @@ We want to use Hazelcast as the JCache provider. The good news is that all you h
 ----
 <dependency>
     <groupId>com.hazelcast</groupId>
-    <artifactId>hazelcast-all</artifactId>
+    <artifactId>hazelcast</artifactId>
 </dependency>
 ----
 
