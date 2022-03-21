@@ -12,8 +12,6 @@ public class BookController {
 
     private final BookService bookService;
 
-    {version}
-
     BookController(BookService bookService) {
         this.bookService = bookService;
     }
