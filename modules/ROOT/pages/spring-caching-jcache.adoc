@@ -5,7 +5,7 @@
 :page-lang: java
 :page-edition: 
 :page-est-time: 5 mins
-:description: This guide will get you started with Hazelcast as a JCache provider for your Spring Boot application.
+:description: This tutorial will get you started with Hazelcast as a JCache provider for your Spring Boot application.
 
 == What You’ll Learn
 
