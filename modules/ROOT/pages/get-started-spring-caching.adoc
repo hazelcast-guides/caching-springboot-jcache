@@ -32,13 +32,13 @@ The application will be a simple web service with two classes defined as follows
 .BookController.java
 [source,java,indent=0]
 ----
-include::ROOT:example$src/main/java/com/hazelcast/springboot/caching/BookController.java[tag=BookController]
+include::ROOT:example$caching-springboot-jcache/src/main/java/com/hazelcast/springboot/caching/BookController.java[tag=BookController]
 ----
 
 .BookService.java
 [source,java,indent=0]
 ----
-include::ROOT:example$src/main/java/com/hazelcast/springboot/caching/BookService.java[tag=BookService]
+include::ROOT:example$caching-springboot-jcache/src/main/java/com/hazelcast/springboot/caching/BookService.java[tag=BookService]
 ----
 
 The idea is that every call to the endpoint `/books/<isbn>` goes to the  `findBookNameByIsbn()` method, which would attempt to return cached results.
@@ -52,7 +52,7 @@ To use Hazelcast as the JCache provider, all you have to do is to add Hazelcast 
 .pom.xml
 [source,xml,indent=0]
 ----
-include::ROOT:example$pom.xml[tag=hazelcast,indent=0]
+include::ROOT:example$caching-springboot-jcache/pom.xml[tag=hazelcast,indent=0]
 ----
 
 Then, you need to create a Hazelcast configuration with the `books` map configured. You can define it as `src/main/resources/hazelcast.yaml`.
@@ -60,7 +60,7 @@ Then, you need to create a Hazelcast configuration with the `books` map configur
 .hazelcast.yaml
 [source,yaml,indent=0]
 ----
-include::ROOT:example$src/main/resources/hazelcast.yaml[]
+include::ROOT:example$caching-springboot-jcache/src/main/resources/hazelcast.yaml[]
 ----
 
 Finally, you can configure your application to use Hazelcast. You can use either client-server or embedded topology.
@@ -102,7 +102,7 @@ Then, use the following `application.properties` for your Spring Boot applicatio
 .application.properties
 [source,properties,indent=0]
 ----
-include::ROOT:example$src/main/resources/application.properties[]
+include::ROOT:example$caching-springboot-jcache/src/main/resources/application.properties[]
 ----
 
 To start the application, run the following command from the `modules/ROOT/examples` directory.
@@ -118,7 +118,7 @@ If you prefer to run Hazelcast embedded in your Spring Boot application, then yo
 .application-embedded.properties
 [source,properties,indent=0]
 ----
-include::ROOT:example$src/main/resources/application-embedded.properties[]
+include::ROOT:example$caching-springboot-jcache/src/main/resources/application-embedded.properties[]
 ----
 
 To start the application, run the following command from the `modules/ROOT/examples` directory.
