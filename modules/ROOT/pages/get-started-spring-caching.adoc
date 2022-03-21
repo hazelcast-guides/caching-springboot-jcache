@@ -30,13 +30,13 @@ For more explanation on the Spring Boot and JCache topic, please check the relat
 The application will be a simple web service with two classes defined as follows:
 
 .BookController.java
-[source,java]
+[source,java,indent=0]
 ----
 include::ROOT:example$src/main/java/com/hazelcast/springboot/caching/BookController.java[tag=BookController]
 ----
 
 .BookService.java
-[source,java]
+[source,java,indent=0]
 ----
 include::ROOT:example$src/main/java/com/hazelcast/springboot/caching/BookService.java[tag=BookService]
 ----
@@ -50,7 +50,7 @@ If there's no cached value, this method is executed and results cached.
 To use Hazelcast as the JCache provider, all you have to do is to add Hazelcast to your classpath:
 
 .pom.xml
-[source,xml]
+[source,xml,indent=0]
 ----
 include::ROOT:example$pom.xml[tag=hazelcast,indent=0]
 ----
@@ -58,7 +58,7 @@ include::ROOT:example$pom.xml[tag=hazelcast,indent=0]
 Then, you need to create a Hazelcast configuration with the `books` map configured. You can define it as `src/main/resources/hazelcast.yaml`.
 
 .hazelcast.yaml
-[source,yaml]
+[source,yaml,indent=0]
 ----
 include::ROOT:example$src/main/resources/hazelcast.yaml[]
 ----
@@ -100,7 +100,7 @@ hz start -c src/main/resources/hazelcast.yaml -j cache-api-1.1.1.jar
 Then, use the following `application.properties` for your Spring Boot application.
 
 .application.properties
-[source,properties]
+[source,properties,indent=0]
 ----
 include::ROOT:example$src/main/resources/application.properties[]
 ----
@@ -116,7 +116,7 @@ mvn spring-boot:run
 If you prefer to run Hazelcast embedded in your Spring Boot application, then you need to use the following `application-embedded.properties` file.
 
 .application-embedded.properties
-[source,properties]
+[source,properties,indent=0]
 ----
 include::ROOT:example$src/main/resources/application-embedded.properties[]
 ----
