@@ -29,12 +29,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
+        
+        <!-- tag::hazelcast[] -->
         <dependency>
             <groupId>com.hazelcast</groupId>
             <artifactId>hazelcast</artifactId>
-            <version>4.2.2</version>
+            <version>5.1</version>
         </dependency>
+        <!-- end::hazelcast[] -->
 
         <dependency>
             <groupId>javax.cache</groupId>
