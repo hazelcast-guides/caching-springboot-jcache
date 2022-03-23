@@ -1,6 +1,6 @@
 = Cache Data in Spring Boot with Hazelcast and JCache
 :page-layout: tutorial
-:page-product: platform
+:page-product: imdg
 :page-categories: Caching, Getting Started, Spring Boot
 :page-lang: java
 :page-edition: 
