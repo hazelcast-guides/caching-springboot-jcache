@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import javax.cache.annotation.CacheResult;
 
+// tag::BookService[]
 @Service
 public class BookService {
     @CacheResult(cacheName = "books")
@@ -22,3 +23,4 @@ public class BookService {
         return "Sample Book Name";
     }
 }
+// end::BookService[]

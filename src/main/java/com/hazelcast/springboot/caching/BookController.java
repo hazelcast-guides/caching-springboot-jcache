@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// tag::BookController[]
 @RestController
 @RequestMapping("/books")
 public class BookController {
@@ -20,4 +21,4 @@ public class BookController {
         return bookService.getBookNameByIsbn(isbn);
     }
 }
-
+// end::BookController[]
