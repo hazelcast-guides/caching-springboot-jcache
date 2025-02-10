@@ -13,8 +13,8 @@
 
 == Before you Begin
 
-- JDK 1.8+
-- Apache Maven 3.2+
+- JDK 17+
+- Apache Maven 3.8+
 
 == Spring Boot Application
 
@@ -89,6 +89,7 @@ CLI::
 ----
 # Install Hazelcast CLI as described at
 # https://github.com/hazelcast/hazelcast-command-line#installation
+# and then run:
 
 wget https://repo1.maven.org/maven2/javax/cache/cache-api/1.1.1/cache-api-1.1.1.jar
 hz start -c src/main/resources/hazelcast.yaml -j cache-api-1.1.1.jar
@@ -142,16 +143,26 @@ Then, you can test the application by executing the following command.
 
 [source,bash]
 ----
-curl localhost:8080/books/12345
+curl -w '\nTotal: %{time_total}s\n' localhost:8080/books/12345
 ----
 
 You should see the following:
 
 ```
 Sample Book Name
+Total: 3.090784s
 ```
 
-The first time you execute this command, it should take some time to get the response. However, when you try it again, it should be instant. That means that the cache is used.
+The first time you execute this command, it should take some time to get the response. However, when you try it again, it should be instant:
+
+[source,bash]
+----
+curl -w '\nTotal: %{time_total}s\n' localhost:8080/books/12345
+Sample Book Name
+Total: 0.009667s
+----
+
+That means that the cache is used.
 
 == Related Resources
 
